@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/app.css" type="text/css">
+    <script text="text/javascript" src="./jquery-3.4.0.js"></script>
+    <title>Aprozar</title>
+</head>
+<body>
+    <div class="container">
+        <nav id="asd" class="red navbar-small">
+            <a href="#legume">Legume</a>
+            <a href="#fructe">Fructe</a>
+            <a href="#cum-comand">Cum comand?</a>
+            <a href="#parteneri">Parteneri</a>
+            <a href="#contact" class="green">Contact</a>
+        </nav>   
+        <div class="page-content">
+            <div class="intro">
+                <h1>Cele mai sanatoase produse</h1>
+                <h2>la cele mai avantajoase preturi</h2>
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-25 left-section"">
+                    <h4>Categorii</h4>
+                    <ol>
+                        <li><a href="#legume">Legume</a></li>
+                        <li><a href="#fructe">Fructe</a></li>
+                    </ol>
+                    <div class="bill">
+                        <h4>Total price: <span id="price">0 RON</span></h4>
+                        <div id="demanded">
+                    </div>
+                        
+                    </div>
+                </div>
+                <div class="col-75 right-section">
+                    <div id="legume">
+                        <h2>Legume</h2>
+                        <div class="row">
+                            <div id="vegetables"></div>
+                        </div>
+                    </div>
+                    <div id="fructe">
+                        <h2>Fructe</h2>
+                        <div class="row">
+                            <div id="fruits"></div>   
+                        </div>
+                    </div>
+                        <br>
+                        <br>
+                    <form id="contactForm" method="post" class="cum-comand">
+                                <legend>Cum comand?</legend>
+                                <h4>Dupa ce ai terminat de selectat produsele dorite, completeaza chestionarul de mai jos si apasa pe Submit</h4>            
+                                    <label class="mandatory">First Name</label>
+                                    <input  type="text" name="First Name" id="fname" required><br>
+                                    <label class="mandatory">Last Name</label>
+                                    <input type="text" name="Last Name" id="lname" required><br>
+                                    <label class="mandatory">Address</label>
+                                    <input type="text" name="Address" id="address" required><br>
+                                    <label >Email</label>
+                                    <input type="email" name="Email" id="email"><br>
+                                    <label class="mandatory">Phone</label>
+                                    <input type="tel" name="Tel" id="phone" required><br>
+                                    <input type="submit" value="Submit" ><br><br>
+                    </form>                    
+                    <div class="down-section">
+                            
+                            <div class="row">
+                                <div id="parteneri">
+                                    <h2>Partenerii nostri</h2>
+                                    <div class="partener col-25">
+                                        <a href="http://mamamanu.ro/">
+                                            <img src="./img/mama_manu.jpg" alt="mama_manu" />
+                                        </a>    
+                                    </div>
+                                    <div class="partener col-25">
+                                        <a href="https://tuborg.ro/">
+                                            <img src="./img/tuborg.jpg" alt="tuborg" />
+                                        </a>  
+                                    </div>
+                                    <div class="partener col-25">
+                                        <a href="https://www.heineken.com/ro/agegateway?returnurl=%2fro">
+                                            <img src="./img/heineken.jpg" alt="heineken" />
+                                        </a>  
+                                    </div>
+                                    <div class="partener col-25">
+                                        <a href="http://www.prigat.com.ro/">
+                                            <img src="./img/prigat.jpg" alt="prigat" />
+                                        </a>  
+                                    </div>
+                                    <div class="partener col-25">
+                                        <a href="http://saladbox.ro/ro">
+                                            <img src="./img/Salad-Box.jpg" alt="saladbox" />
+                                        </a>  
+                                    </div>
+                                    <div class="partener col-25">
+                                        <a href="https://spartanrestaurant.ro/">
+                                            <img src="./img/spartan.jpg" alt="spartan" />
+                                        </a>                     
+                                    </div>
+                                </div>
+                                <br><br>
+                            </div>
+                    </div>
+                </div>
+            
+        </div>
+        <br>
+        <br>
+        <footer>
+            <div id="contact">
+                <ul class="footer-items">
+                    <li>
+                        <ul class="social-media">
+                            <h4>Social media</h4>
+                            <div class="col-33"><a href="https://www.facebook.com/Aprozar-245425449465708/" >Facebook</a></div>
+                            <div class="col-33"><a href="https://twitter.com/aprozaronline" >Twitter</a></div>
+                            <div class="col-33"><a href="https://www.instagram.com/explore/locations/1009730760/laprozar/">Instagram</a></div>
+                        </ul>
+                    </li>
+                    <br>
+                    <li>
+                        <ul class="contact-details">
+                            <h4>Contact details</h4>
+                            <div class="col-33"><a href="https://wego.here.com/directions/mix//Aprozar,-CALEA-VACARESTI-NR-242,-BLOC-72-B.,-Bucharest:e-eyJuYW1lIjoiQXByb3phciIsImFkZHJlc3MiOiJDQUxFQSBWQUNBUkVTVEkgTlIgMjQyLCBCTE9DIDcyIEIuLCBCdWNoYXJlc3QsIFJvbWFuaWEiLCJsYXRpdHVkZSI6NDQuNDEwMDYsImxvbmdpdHVkZSI6MjYuMTE1NzQsInByb3ZpZGVyTmFtZSI6ImZhY2Vib29rIiwicHJvdmlkZXJJZCI6MjQ1NDI1NDQ5NDY1NzA4fQ==?map=44.41006,26.11574,15,normal&fb_locale=en_US">Google Maps</a></div>
+                            <div class="col-33"><a tel="+40745424640">+40745424640</a></div>
+                            <div class="col-33"><a href="mailto: contact@aprozar.ro">Email: contact@aprozar.ro</a></div>
+                        </ul>
+                    </li>
+                    <br>
+                </ul>
+            </div>
+        </footer>
+    </div>
+    <script src="./app.js"></script>
+</body>
+</html>

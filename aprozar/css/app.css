@@ -1,0 +1,235 @@
+* { 
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+div {
+    display: block;
+}
+
+.container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+
+#inc #dec #rem {
+    background-color: yellow;
+} 
+.row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+
+@media (min-width: 768px){
+    .container{
+        width:720px;
+    }
+}
+
+@media (min-width: 576px){
+    .container{
+        width:850px;
+    }
+}
+
+@media (min-width: 992px){
+    .container{
+        width:540px;
+    }
+}
+
+@media (min-width: 1200px){
+    .container{
+        width: 1000px;
+    }
+}
+
+.row::after {
+    content: " ";
+    clear: both;
+    display: table;
+}
+
+[class*="col-"] {
+    float: left;
+}
+
+.col-25 {
+    width: 25%;
+}
+
+.col-33 {
+    width: 33%;
+}
+
+.col-50 {
+    width: 50%;
+}
+
+.col-66 {
+    width: 66%;
+}
+
+.col-75 {
+    width: 75%;
+}
+
+.col-100 {
+    width: 100%;
+}
+
+
+
+h1 {
+    color: red;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h2 {
+    color: red;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+legend {
+    color: red;
+    margin-bottom: 20px;
+    text-align: center;
+    text-size-adjust: 40;
+}
+
+body {
+    background-color: aqua;
+}
+
+nav {
+    background-color: red;
+    padding: 15px;
+    margin-bottom: 50px;
+}
+
+nav a {
+    color: white;
+    margin-right: 10px;
+}
+
+button {
+    position: relative;
+    background-color: yellow;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    background-color: silver;
+}
+
+.left-section, .right-section, .down-section{
+    border: 2px solid silver;
+    padding: 15px;
+    
+}
+
+.bill {
+    border: 2px solid silver;
+    top: 100px;
+    /* bottom: auto; */
+    position: fixed;
+    position: -webkit-sticky; /* Safari */
+    overflow: scroll;
+    margin-top: 100px;
+    margin-bottom: 200px;
+
+}
+
+.cum-comand{
+    border: 2px solid silver;
+    padding: 15px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.produs {
+    position: relative;
+    padding: 0px;
+    text-align: center;
+}
+
+.produs img {
+    width: 100%;
+    height: 120px;
+}
+
+.highlight {
+    display: none;
+    background-color: rgba(200, 0, 0, 0.5);
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+.produs:hover .highlight {
+    display: block;
+}
+
+.partener {
+    display: inline-block;
+    border: 1px solid transparent;
+}
+
+
+
+.partener:hover {
+    border: 1px solid silver;
+}
+
+footer {
+    background-color: red;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 15px;
+}
+
+input[type=text], [type=tel], [type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    padding: 12px 20px;
+    background-color: yellow;
+}
+
+input[type=submit]:hover {
+    background-color: silver;
+}
+
+
+
+@media (max-width: 540px){
+    .left-section, .right-section, .down-section{
+        width: 100%;
+    }
+    .produs{
+        width: 100%;
+    }
+}
+
+.mandatory::after {
+    content: "*";
+    color: red;
+}

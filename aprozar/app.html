@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="css/app.css" type="text/css">
     <script text="text/javascript" src="./jquery-3.4.0.js"></script>
     <title>Aprozar</title>
+
+    <!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 </head>
 <body>
     <div class="container">
@@ -13,12 +17,49 @@
             <a href="#cum-comand">Cum comand?</a>
             <a href="#parteneri">Parteneri</a>
             <a href="#contact" class="green">Contact</a>
-        </nav>   
+        </nav>
         <div class="page-content">
             <div class="intro">
                 <h1>Cele mai sanatoase produse</h1>
                 <h2>la cele mai avantajoase preturi</h2>
+            </div>           
+            <div  id="slider">
+                <div class="w3-content w3-display-container">
+                        <img class="mySlides mySlidesShow" src="./img/fructe-legume.jpg" />
+                        <img class="mySlides" src="./img/legume2.jpg" />
+                        <img class="mySlides" src="./img/legume.jpg" />
+                        <img class="mySlides" src="./img/daea.jpg" />
+                        <div id="myProgress">
+                            <div id="myBar"></div>
+                        </div>
+                    </div>
+                <button class="display-left" id="slide-left">&#10094;</button>
+                <button class="display-right" id="slide-right">&#10095;</button>
+                <div id="slider-circles">
+                    <span class="circle circleShow" onclick="currentDiv(0)">&#9675;</span>
+                    <span class="circle" onclick="currentDiv(1)">&#9675;</span>
+                    <span class="circle" onclick="currentDiv(2)">&#9675;</span>
+                    <span class="circle" onclick="currentDiv(3)">&#9675;</span>
+                </div>
             </div>
+            <br /><br />
+            <form method="get" id="search-container">
+                <input type="text" placeholder="Search.." name="search" id="search">
+            </form>
+            <div id="price-range">
+                <label>Select your price range: </label>
+                <br />
+                <label>Minimum price: 1 RON</label>
+                <input type="range" name="points" min="1" max="9" id="search-price" value="9">
+                <div id="maximum-price">Maximum price: 9 RON</div>
+            </div>
+            <br />
+            <div id="choose-prod">
+                <div>Ce cautati?<div>
+                <input type="checkbox" name="vehicle1" value="Legume" id="check-legume"> Legume<br>
+                <input type="checkbox" name="vehicle2" value="Fructe" id="check-fructe"> Fructe<br>
+            </div>
+            <br /><br />
         </div>
             <div class="row">
                 <div class="col-25 left-section"">
@@ -29,9 +70,7 @@
                     </ol>
                     <div class="bill">
                         <h4>Total price: <span id="price">0 RON</span></h4>
-                        <div id="demanded">
-                    </div>
-                        
+                        <h5 id="demanded"></h5> 
                     </div>
                 </div>
                 <div class="col-75 right-section">
@@ -39,17 +78,19 @@
                         <h2>Legume</h2>
                         <div class="row">
                             <div id="vegetables"></div>
+                            <div id="vegetables-modal"></div>
                         </div>
                     </div>
                     <div id="fructe">
                         <h2>Fructe</h2>
                         <div class="row">
-                            <div id="fruits"></div>   
+                            <div id="fruits"></div>  
+                            <div id="fruits-modal"></div> 
                         </div>
                     </div>
                         <br>
                         <br>
-                    <form id="contactForm" method="post" class="cum-comand">
+                    <form id="cum-comand" method="post" class="cum-comand">
                                 <legend>Cum comand?</legend>
                                 <h4>Dupa ce ai terminat de selectat produsele dorite, completeaza chestionarul de mai jos si apasa pe Submit</h4>            
                                     <label class="mandatory">First Name</label>

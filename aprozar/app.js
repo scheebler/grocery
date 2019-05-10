@@ -16,7 +16,7 @@ var form = {
 var to_search = document.getElementById("search");
 var max_price = document.getElementById("search-price"); 
 var width = 0;
-var elem = document.getElementById("myBar");   
+var myBar = document.getElementById("myBar");   
 
 
 
@@ -24,7 +24,7 @@ var current_slide = 0;
 
 function currentDiv(n){
     width = 0;
-    elem.style.width = width + '%'; 
+    myBar.style.width = width + '%'; 
     var slides = document.getElementsByClassName("mySlides");
     slides[current_slide].classList.remove("mySlidesShow");
     slides[n].classList.add("mySlidesShow");
@@ -49,7 +49,7 @@ function skip_slide(n){
     }
 
     width = 0;
-    elem.style.width = width + '%';
+    myBar.style.width = width + '%';
     slides[current_slide].classList.remove("mySlidesShow");
     slides[next_slide].classList.add("mySlidesShow");
     var circles = document.getElementsByClassName("circle");
@@ -68,7 +68,7 @@ function showDivs() {
                 skip_slide(1);
             } else {
                 width++; 
-                elem.style.width = width + '%'; 
+                myBar.style.width = width + '%'; 
             }
         }      
     } 
@@ -128,10 +128,10 @@ fetch('http://demo8450084.mockable.io/mygrocery/fruits')
   .then(function(response) {
       for(var fruit of Object.values(response)){
         ++product_id;
+        fruit.type = "fruit";
         products.push(fruit);
         product_type.push("fruit");
         document.getElementById("fruits").innerHTML += add_product(fruit);
-        document.getElementById("fruits-modal").innerHTML +=  modal(fruit);
 
       }  
   });
@@ -143,10 +143,10 @@ fetch('http://demo8450084.mockable.io/mygrocery/fruits')
   .then(function(response) {
       for(var vegetable of Object.values(response)){
         ++product_id;
+        vegetable.type = "vegetable";
         products.push(vegetable);
         product_type.push("vegetable");
         document.getElementById("vegetables").innerHTML += add_product(vegetable);
-        document.getElementById("vegetables-modal").innerHTML += modal(vegetable);
 
       }  
   });
@@ -207,7 +207,6 @@ function add_product(product){
     <div class="highlight">
         <h4 class="nume">${product.name}</h4>
         <h5 class="pret">${product.price} RON/kg</h5>
-        <a href="#${id}" rel="modal:open">More</a>
     </div>
     <img src="${product.img}" alt="${product.name}" />
     <button data-id="${id}">Adauga in cos</button>
@@ -216,11 +215,14 @@ function add_product(product){
 
 function modal(product){
     id = get_product_id_by_name(product.name);
-    return `<div class="modal" id="${id}">
-    <h4 class="nume">${product.name}</h4>
-    <h5 class="pret">${product.price} RON/kg</h5>
-    <img src="${product.img}" alt="${product.name}" />
-    <button data-id="${id}">Adauga in cos</button>
+    return `<div class="modal-item" id="${id}">
+    <div class="modal-content">
+        <h4 class="nume">${product.name}</h4>
+        <h5 class="pret">${product.price} RON/kg</h5>
+        <img src="${product.img}" alt="${product.name}" />
+        <button data-id="${id}">Adauga in cos</button>
+        <span class="close">&times;</span>
+    </div>
     </div>`
 }
 
@@ -248,40 +250,75 @@ function search(event) {
     check_legume = document.getElementById("check-legume").checked;
     check_fructe = document.getElementById("check-fructe").checked;
     event.preventDefault();
-    console.log(to_search.value);
     document.getElementById("vegetables").innerHTML = "";
     document.getElementById("fruits").innerHTML = "";
-    for (var index = 0; index < products.length; ++index){
-        if (products[index].name.toLowerCase().includes(to_search.value.toLowerCase())){
-            if(products[index].price <= max_price.value){
-                if(check_legume === true){
-                    if (product_type[index] === "vegetable"){
-                        document.getElementById("vegetables").innerHTML += add_product(products[index]);
-                    }
-                }
-                if(check_fructe === true){
-                    if (product_type[index] === "fruit"){
-                        document.getElementById("fruits").innerHTML += add_product(products[index]);
-                    }
-                }
-            }
-        }
+    const result_by_name = products.filter(products => products.name.toLowerCase().includes(to_search.value.toLowerCase()));
+    const result_by_price = result_by_name.filter(result_by_name => result_by_name.price <= max_price.value);
+    var result_by_fruits = [];
+    var result_by_vegetables = [];
+    if(check_legume === true){
+        result_by_vegetables = result_by_price.filter(result_by_price => result_by_price.type === "vegetable");
     }
+    if(check_fructe === true){
+        result_by_fruits = result_by_price.filter(result_by_price => result_by_price.type === "fruit");
+    }
+    for (var index = 0; index < result_by_vegetables.length; ++index){
+            document.getElementById("vegetables").innerHTML += add_product(result_by_vegetables[index]);
+    } 
+    for (var index = 0; index < result_by_fruits.length; ++index){
+        document.getElementById("fruits").innerHTML += add_product(result_by_fruits[index]);
+    }    
 }
 
 function change_price(){
     document.getElementById('maximum-price').innerHTML = "Maximum price: " + max_price.value + " RON";
 }
 
+function modal_events(my_modal){
+    modal_item = $(".modal-item");
+    modal_item.css("display", "block");
+    my_modal.on("click", ".close",  function() {
+        modal_item.css("display", "none");
+        });
+    my_modal.on("click",  function(event) {
+    if (event.target !== my_modal.find(".modal-content")) {
+        modal_item.css("display", "none");
+    }
+    });
+    $(document).keyup(function(e){
+        if (e.keyCode === 27){
+            modal_item.css("display", "none");
+        }
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function(event){
+    
     document.getElementById('cum-comand').onsubmit = submit_FORM;
     document.getElementById('search-container').oninput = search;
-    document.getElementById('choose-prod').oninput = search;
+    document.getElementById('search-type').oninput = search;
     $("#legume").on("click", "[data-id]", function(){
         var prod = get_current_product.call(this);
         set_command(prod.name, prod.price);
     });
     $("#fructe").on("click", "[data-id]", function(){
+        var prod = get_current_product.call(this);
+        set_command(prod.name, prod.price);
+    });
+    $("#legume").on("click", ".highlight", function(){
+        var prod_name = $(this).find("h4").text();
+        var my_modal = $("#modal-container");
+        my_modal.html(modal(products[get_product_id_by_name(prod_name)]));
+        modal_events(my_modal);   
+    });
+    $("#fructe").on("click", ".highlight", function(){
+        var prod_name = $(this).find("h4").text();
+        var my_modal = $("#modal-container");
+        my_modal.html(modal(products[get_product_id_by_name(prod_name)]));
+        modal_events(my_modal);
+    });
+    $("body").on("click", "[data-id]", function(){
+        console.log($(this))
         var prod = get_current_product.call(this);
         set_command(prod.name, prod.price);
     });
@@ -309,9 +346,6 @@ document.addEventListener("DOMContentLoaded", function(event){
         change_price();
         search(e);
     });
-    $("#vegetables-modal").on("click", "[data-id]", function(){
-        console.log("aici");
-        var prod = get_current_product.call(this);
-        set_command(prod.name, prod.price);
-    });
+    
+
 });

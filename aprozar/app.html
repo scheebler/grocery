@@ -5,9 +5,6 @@
     <script text="text/javascript" src="./jquery-3.4.0.js"></script>
     <title>Aprozar</title>
 
-    <!-- jQuery Modal -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 </head>
 <body>
     <div class="container">
@@ -43,24 +40,27 @@
                 </div>
             </div>
             <br /><br />
-            <form method="get" id="search-container">
-                <input type="text" placeholder="Search.." name="search" id="search">
-            </form>
-            <div id="price-range">
-                <label>Select your price range: </label>
+            <div id=search-container>
+                <form method="get" id="search-name">
+                    <input type="text" placeholder="Search.." name="search" id="search">
+                </form>
+                <div id="price-range">
+                    <label>Select your price range: </label>
+                    <br />
+                    <label>Minimum price: 1 RON</label>
+                    <input type="range" name="points" min="1" max="9" id="search-price" value="9">
+                    <div id="maximum-price">Maximum price: 9 RON</div>
+                </div>
                 <br />
-                <label>Minimum price: 1 RON</label>
-                <input type="range" name="points" min="1" max="9" id="search-price" value="9">
-                <div id="maximum-price">Maximum price: 9 RON</div>
+                <div id="search-type">
+                    <div>Ce cautati?</div>
+                    <input type="checkbox" name="vehicle1" value="Legume" id="check-legume" checked> Legume<br>
+                    <input type="checkbox" name="vehicle2" value="Fructe" id="check-fructe" checked> Fructe<br>
+                </div>
+                <br /><br />
             </div>
-            <br />
-            <div id="choose-prod">
-                <div>Ce cautati?<div>
-                <input type="checkbox" name="vehicle1" value="Legume" id="check-legume"> Legume<br>
-                <input type="checkbox" name="vehicle2" value="Fructe" id="check-fructe"> Fructe<br>
-            </div>
-            <br /><br />
         </div>
+            <div id="modal-container"></div>
             <div class="row">
                 <div class="col-25 left-section"">
                     <h4>Categorii</h4>
@@ -78,14 +78,12 @@
                         <h2>Legume</h2>
                         <div class="row">
                             <div id="vegetables"></div>
-                            <div id="vegetables-modal"></div>
                         </div>
                     </div>
                     <div id="fructe">
                         <h2>Fructe</h2>
                         <div class="row">
                             <div id="fruits"></div>  
-                            <div id="fruits-modal"></div> 
                         </div>
                     </div>
                         <br>
